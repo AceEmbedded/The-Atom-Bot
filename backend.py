@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 import uuid
 from database import add_user
 import database
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # In-memory database
 users = []
