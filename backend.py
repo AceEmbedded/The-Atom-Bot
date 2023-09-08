@@ -11,8 +11,6 @@ products = []
 orders = []
 appointments = []
 
-
-
 # functions
 def generate_unique_id():
     return str(uuid.uuid4())
@@ -42,8 +40,6 @@ def register():
 
 
     
-
-
 
 @app.route('/', methods=['GET']) #one endpoint/route
 def home():

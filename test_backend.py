@@ -5,7 +5,9 @@ import json
 register_url = 'http://127.0.0.1:5000/register'
 login_url = 'http://127.0.0.1:5000/login'
 #Solution to Assignment
-inventory_url = 'https://127.0.0.1:5000/inventory'
+inventory_url = 'http://127.0.0.1:5000/inventory'
+products_url ='http://127.0.0.1:5000/products'
+
 
 
 
@@ -21,12 +23,13 @@ payload = {
 
 ###Solution to Assignment
 payload = {
-    'product_name': 'ace_laptop',
-    'product_price': '$500',
-    'product_description': 'This is an ACE_Embedded Laptop'
+    'product_name': 'ace_lamp',
+    'product_price': '$100',
+    'product_description': 'This is an ACE_Embedded Lamp'
 }
 # # Make the POST request with JSON data
-# response = requests.post(register_url, json=payload)
+response = requests.get(products_url)
+print(response.text)
 
 # print(response.text)
 # response_data = json.loads(response.text)
@@ -34,18 +37,18 @@ payload = {
 
 ######LOGIN
 # Create a dictionary with the data you want to send
-payload = {
-    'username': 'my_username',
-    'password': 'my_password',
+# payload = {
+#     'username': 'my_username',
+#     'password': 'my_password',
  #  'first_name': 'John',
 # 'last_name': 'Doe'
-}
+#}
 
 # Make the POST request with JSON data
-response = requests.get(login_url, json=payload)
+# response = requests.get(login_url, json=payload)
 
-print(response.text)
-response_data = json.loads(response.text)
+# print(response.text)
+# response_data = json.loads(response.text)
 
 
-print(response_data)
+# print(response_data)

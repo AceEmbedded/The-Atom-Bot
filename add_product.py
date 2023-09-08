@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import uuid
-from database import add_product
+from database import add_product, fetch_all_products
 import database
 
 app = Flask(__name__)
@@ -36,6 +36,12 @@ def inventory():
     elif success==False:
         return jsonify({"message": "error!"}), 400
     
+@app.route('/products', methods=['GET']) #one endpoint/route
+def fetch_product():
+    products = fetch_all_products()
+    return jsonify({"products": products})
+
+# @app.route('/order', methods=['POST']) #one endpoint/route
 
 
 if __name__ == '__main__':

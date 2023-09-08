@@ -25,6 +25,15 @@ class Products(Base):
     # Consider hashing before storing
 
 
+class Orders(Base):
+    __tablename__ = 'products'
+    id = Column(String, primary_key=True, default=str(uuid.uuid4()), unique=True)
+    product_name = Column(String, unique=True)
+    product_price = Column(String)
+    product_description = Column(String)
+    # Consider hashing before storing
+
+
 # class Users(Base):
 #     __tablename__ = 'order'
 #     id = Column(String, primary_key=True, default=str(uuid.uuid4()), unique=True)
@@ -114,7 +123,30 @@ def add_product(product_name, product_price, product_description):
 def get_product(product_id):
     product = session.query(Products).filter_by(id=product_id).first()
     return product
-# Examples
+
+def fetch_all_products():
+    try:
+        # Query the Products table and fetch all rows
+        all_products = session.query(Products).all()
+        
+        # Convert all_products to a list of dictionaries
+        all_products_dict = [
+            {
+                "id": product.id,
+                "product_name": product.product_name,
+                "product_price": product.product_price,
+                "product_description": product.product_description
+            }
+            for product in all_products
+        ]
+
+        return all_products_dict
+      
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        session.rollback()
+        return None
+
 
 # user = get_user('ef97426d-1128-4f06-9af1-3da88eeb3724')
 
