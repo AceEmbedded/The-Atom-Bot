@@ -35,3 +35,8 @@ def inventory():
     
     elif success==False:
         return jsonify({"message": "error!"}), 400
+    
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
