@@ -25,6 +25,15 @@ class Products(Base):
     product_description = Column(String)  # Consider hashing before storing
 
 
+class order(Base):
+    __tablename__ = 'orders'
+    id = Column(String, primary_key=True, default=str(uuid.uuid4()), unique=True)
+    product_name = Column(String, unique=True)
+    product_price = Column(String)
+    quantity = Column(Integer)  # Consider hashing before storing
+
+
+
 # class Users(Base):
 #     __tablename__ = 'order'
 #     id = Column(String, primary_key=True, default=str(uuid.uuid4()), unique=True)
@@ -112,6 +121,19 @@ def add_product(product_name, product_price, product_description):
         return False
 
     return True
+
+# Function to add a new Order
+def add_order(id, product_name, product_price, quantity):
+
+    try: 
+        new_order = order(id=id, product_name=product_name, product_price=product_price, quantity=quantity)
+        session.add(new_order)
+        session.commit()
+    except:
+        return False
+    
+    return True
+
 
 
 # Function to get a Product by ID
